@@ -2,6 +2,9 @@ package com.latam.arq.clilatam.dao;
 
 
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,11 +23,15 @@ public class PartyIdentificationService {
 	PartyIdentificationRepository partiIdenDao;	
 
 
-	public int findPartyId(String ffNumber) {
+	public List<PartyIdentification> findPartyId(String ffNumber) {
 		PartyIdentification identification =new PartyIdentification();
 		logger.info("ffNumber  " +ffNumber);
-		identification= partiIdenDao.findPartiIdByffNumber(ffNumber);
-		logger.info("identification " +identification.toString());
-		return identification.getPartyId();
+		List<PartyIdentification> partyList = new ArrayList<PartyIdentification>();
+
+		
+		partyList.addAll(partiIdenDao.findPartiIdByffNumber(ffNumber));
+		
+		logger.info("identification " +partyList.toString());
+		return partyList;
 	}
 }

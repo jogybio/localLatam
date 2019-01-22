@@ -13,8 +13,8 @@ import com.latam.arq.clilatam.entity.City;
 public interface CityRepository extends JpaRepository<City, Serializable>{
 
 	
-	@Query(value="SELECT * FROM mydb.city WHERE city_cd = :id",nativeQuery=true)
-	public City findCityByCityId(@Param("id") int id);
+	@Query(value="SELECT * FROM EXCDR.city Ci WHERE Ci.city_cd = :id",nativeQuery=true)
+	public City findCityByCityId(@Param("id") String id);
 
 
 }

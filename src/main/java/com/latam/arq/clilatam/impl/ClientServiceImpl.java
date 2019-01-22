@@ -10,9 +10,12 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import com.latam.arq.clilatam.dao.CityService;
+import com.latam.arq.clilatam.dao.PartyAddressHistoryService;
 import com.latam.arq.clilatam.dao.PartyIdentificationService;
 import com.latam.arq.clilatam.domain.Client;
+import com.latam.arq.clilatam.domain.InformationClient;
 import com.latam.arq.clilatam.domain.Request;
+import com.latam.arq.clilatam.entity.PartyIdentification;
 import com.latam.arq.clilatam.service.IClientService;
 
 @Service("clientServiceImpl")
@@ -28,20 +31,31 @@ public class ClientServiceImpl implements IClientService {
     @Qualifier("partyIdentificationService")
     public PartyIdentificationService partyIdentificationService;
     
-	
-
+    @Autowired
+    @Qualifier("informationClientService")
+    public InformationClientServiceImpl informationClientService;
+    
+ 
 	@Override
 	public List<Client> obtainClientProcess(Request request) {
 		List<Client> lisClient = new ArrayList<Client>();
 		Client client = new Client();
+		List<PartyIdentification> partyIdenList = partyIdentificationService.findPartyId(request.getFfNumber());
 		
-		client.setFfNumber(request.getFfNumber());
-		client.setCity(cityService.findCityByCityId(1).getCityName());
-		logger.info("city--->  "+client.toString());
-		client.setPartyId(partyIdentificationService.findPartyId(request.getFfNumber()));
-		logger.info(client.toString());
-		lisClient.add(client);
+		for (PartyIdentification partyIdentification : partyIdenList) {		
+			client = new Client();
+			client.setFfNumber(request.getFfNumber());
+			client.setCity(cityService.findCityByCityId(1).getCityName());			
+			
+	        client.setInformation(informationClientService.obtainInformationClientProcess(partyIdentification.getPartyId()));
+			client.setPartyId(partyIdentification.getPartyId());
+			logger.info(client.toString());		
+			lisClient.add(client);
+		}	
+		
+		
 		return lisClient;
 	}
+
 
 }

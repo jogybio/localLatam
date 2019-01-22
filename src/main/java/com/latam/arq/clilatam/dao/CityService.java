@@ -16,7 +16,7 @@ public class CityService {
 	
 	
 	public City findCityByCityId(int id) {
-		return clientDao.findCityByCityId(id);
+		return clientDao.findCityByCityId("J05");
 	}
 
 

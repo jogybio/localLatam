@@ -1,6 +1,7 @@
 package com.latam.arq.clilatam.dao;
 
 import java.io.Serializable;
+import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -14,7 +15,7 @@ public interface PartyIdentificationRepository extends JpaRepository<PartyIdenti
 	
 	
 	
-	@Query(value="SELECT * FROM mydb.PARTY_IDENTIFICATION PI WHERE PARTY_IDENTIFICATION_NUM_CLEAN = :ffNumber",nativeQuery=true)
-	public PartyIdentification findPartiIdByffNumber(@Param("ffNumber") String ffNumber);
+	@Query(value="SELECT PI.PARTY_ID, PI.IDENTIFICATION_CD, PI.PARTY_IDENTIFICATION_NUM, PI.PARTY_IDENTIFICATION_EXPIRY_DT,PI.PARTY_IDENTIFICATION_NUM_CLEAN FROM EXCDR.PARTY_IDENTIFICATION PI WHERE EXCDR.PI.PARTY_IDENTIFICATION_NUM_CLEAN =:ffNumber and EXCDR.PI.identification_cd = 41",nativeQuery=true)
+	public List<PartyIdentification> findPartiIdByffNumber(@Param("ffNumber") String ffNumber);
 
 }
