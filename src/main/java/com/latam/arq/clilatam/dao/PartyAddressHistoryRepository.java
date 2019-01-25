@@ -8,15 +8,15 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-import com.latam.arq.clilatam.entity.ElectronicAddress;
+import com.latam.arq.clilatam.entity.PartyAddresHistory;
 
 
 @Repository("partyAddressHistoryRepository")
-public interface PartyAddressHistoryRepository extends JpaRepository<ElectronicAddress, Serializable>{
+public interface PartyAddressHistoryRepository extends JpaRepository<PartyAddresHistory, Serializable>{
 
 		
-	@Query(value="SELECT * FROM EXCDR.ELECTRONIC_ADDRESS EA WHERE EA.ELECTRONIC_ADDRESS_ID = :partyId",nativeQuery=true)
-	public List<ElectronicAddress> findAddressClient(@Param("partyId") String partyId);
+	@Query(value="select * from EXCDR.PARTY_ADDRESS_HISTORY PAH WHERE PAH.PARTY_ID = :partyId",nativeQuery=true)
+	public List<PartyAddresHistory> findAddressClient(@Param("partyId") int partyId);
 	
 	
 }

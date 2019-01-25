@@ -28,7 +28,7 @@ public class ListClientApi {
 	private IClientService clientService;
 	
 	
-	@RequestMapping(value = "/ws/api/client/v3/listClient", method = RequestMethod.POST)
+	@RequestMapping(value = "/ws/api/client/v3/listClient", method = RequestMethod.GET)
 	public Response getClientCustomer(@RequestBody @Valid Request request, Errors errors) {
 		Response response = new Response();
 		

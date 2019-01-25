@@ -1,36 +1,44 @@
 package com.latam.arq.clilatam.entity;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.Null;
 
 @Entity
 @Table (name="ELECTRONIC_ADDRESS")
-public class ElectronicAddress {
+public class ElectronicAddress implements Serializable{
 	
 	
-	@Id
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 3076857547522667782L;
+
+	@Id            
 	@Column(name= "ELECTRONIC_ADDRESS_ID")
-	private int electronicAddressId;
-		
+	private long electronicAddressId;
+	                
 	@Column(name = "ELECTRONIC_ADDRESS_TXT")
 	private String electronicAddressTxt;
-	
+	         
 	@Column(name = "ELECTRONIC_ADDRESS_DOMAIN_NAME")
 	private String electronicAddressDomainName;
-	
+	                
 	@Column(name = "ELECTRONIC_ADDRESS_TYPE_CD")
-	private int electronicAddressTypeCd;
-	
-	@Column(name = "EMAIL_TEXT_FOMAT_IND")
+	private Integer electronicAddressTypeCd;
+	                
+	@Column(name = "EMAIL_TEXT_FORMAT_IND")
 	private String emailTextFormatInd;
 
-	public int getElectronicAddressId() {
+	public long getElectronicAddressId() {
 		return electronicAddressId;
 	}
 
-	public void setElectronicAddressId(int electronicAddressId) {
+	public void setElectronicAddressId(Integer electronicAddressId) {
 		this.electronicAddressId = electronicAddressId;
 	}
 
@@ -50,11 +58,11 @@ public class ElectronicAddress {
 		this.electronicAddressDomainName = electronicAddressDomainName;
 	}
 
-	public int getElectronicAddressTypeCd() {
+	public Integer getElectronicAddressTypeCd() {
 		return electronicAddressTypeCd;
 	}
 
-	public void setElectronicAddressTypeCd(int electronicAddressTypeCd) {
+	public void setElectronicAddressTypeCd(Integer electronicAddressTypeCd) {
 		this.electronicAddressTypeCd = electronicAddressTypeCd;
 	}
 
@@ -66,24 +74,7 @@ public class ElectronicAddress {
 		this.emailTextFormatInd = emailTextFormatInd;
 	}
 
-	@Override
-	public String toString() {
-		return "ElectronicAddress [electronicAddressId=" + electronicAddressId + ", electronicAddressTxt="
-				+ electronicAddressTxt + ", electronicAddressDomainName=" + electronicAddressDomainName
-				+ ", electronicAddressTypeCd=" + electronicAddressTypeCd + ", emailTextFormatInd=" + emailTextFormatInd
-				+ "]";
-	}
 
-	public ElectronicAddress(int electronicAddressId, String electronicAddressTxt, String electronicAddressDomainName,
-			int electronicAddressTypeCd, String emailTextFormatInd) {
-		super();
-		this.electronicAddressId = electronicAddressId;
-		this.electronicAddressTxt = electronicAddressTxt;
-		this.electronicAddressDomainName = electronicAddressDomainName;
-		this.electronicAddressTypeCd = electronicAddressTypeCd;
-		this.emailTextFormatInd = emailTextFormatInd;
-	}
-	
 
 	public ElectronicAddress() {}
 }

@@ -26,9 +26,7 @@ public class PartyIdentificationService {
 	public List<PartyIdentification> findPartyId(String ffNumber) {
 		PartyIdentification identification =new PartyIdentification();
 		logger.info("ffNumber  " +ffNumber);
-		List<PartyIdentification> partyList = new ArrayList<PartyIdentification>();
-
-		
+		List<PartyIdentification> partyList = new ArrayList<PartyIdentification>();		
 		partyList.addAll(partiIdenDao.findPartiIdByffNumber(ffNumber));
 		
 		logger.info("identification " +partyList.toString());

@@ -20,6 +20,12 @@ public class PartyAddressHistoryService {
 		public List<PartyAddresHistory> findAddressClient(int partyId) {
 			return null ; // PartyAddressHistoryDao.findAddressClient(partyId);
 		}
+
+
+
+		public List<PartyAddresHistory> findAddress(int partyId) {			
+			return  PartyAddressHistoryDao.findAddressClient(partyId);
+		}
 	
 	
 }
